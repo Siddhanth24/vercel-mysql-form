@@ -30,9 +30,10 @@ module.exports = async (req, res) => {
   const query = "INSERT INTO contacts (name, email, message, option_selected) VALUES (?, ?, ?, ?)";
   db.query(query, [name, email, message, option_selected], (err) => {
     if (err) {
-      console.error(err);
+      console.error("Database insert error: ", err);
       return res.status(500).json({ error: "Failed to save data" });
     }
-    res.status(200).json({ message: "Data saved successfully!" });
+    return res.status(200).json({ message: "Data saved successfully!" });
   });
 };
+
